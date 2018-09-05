@@ -11,6 +11,7 @@ public class ActiveScan {
 
 	public static void main(String[] args) throws InterruptedException, ClientApiException {
 		ClientApi api = new ClientApi("localhost", 8080,   "null");
+		api.accessUrl("http://dvwa.co.uk/");
          api.spider.scan("http://dvwa.co.uk/", null, null, null, null);
 
 
