@@ -9,10 +9,7 @@ dependencies{
     compile group: 'org.zaproxy', name: 'zap-clientapi', version: '1.6.0'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
     compile group: 'com.thoughtworks.tools', name: 'security-zap', version: '1.0.5'
-
-
 }
-
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -20,3 +17,4 @@ targetCompatibility = 1.8
 task runZapDaemon(type :Exec){
     commandLine 'sh','startZAPDaemon.sh'
 }
+
