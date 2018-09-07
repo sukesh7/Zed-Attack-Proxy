@@ -62,7 +62,7 @@ public class ActiveScan {
         System.out.println(((ApiResponseSet) resultSummary).getKeys());
 
 
-        String actual = ((ApiResponseSet) resultSummary).getValue("High").toString();
+        String actual = ((ApiResponseSet) resultSummary).getValue("Medium").toString();
         System.out.println("Actual" + actual);
         System.out.println("Active Scan complete");
 
