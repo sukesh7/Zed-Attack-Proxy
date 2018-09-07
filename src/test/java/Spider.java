@@ -37,8 +37,9 @@ public class Spider {
         String Report = new String(api.core.htmlreport(), StandardCharsets.UTF_8);
         System.out.println(System.getProperty("user.dir"));
         Path filePath = Paths.get(System.getProperty("user.dir") + "/scan-results/spider.html");
-        if (!Files.exists(filePath, LinkOption.NOFOLLOW_LINKS))
+        if (!Files.exists(filePath, LinkOption.NOFOLLOW_LINKS)) {
             Files.createFile(filePath);
+        }
         Files.write(filePath, Report.getBytes());
         System.out.println("Spider complete");
     }

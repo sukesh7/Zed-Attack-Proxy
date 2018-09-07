@@ -1,8 +1,11 @@
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +16,8 @@ import org.zaproxy.clientapi.core.ClientApiException;
 
 public class SeleniumExample {
 
-	public static void main(String[] args) throws InterruptedException, ClientApiException, IOException {
+	@Test
+	public void seleniumTests() throws InterruptedException, ClientApiException, IOException {
 		System.setProperty("webdriver.gecko.driver", "./geckodriver");
 
 		WebDriver driver;
@@ -34,8 +38,13 @@ public class SeleniumExample {
 
 		// Report Generation
 		ClientApi api = new ClientApi("localhost", 8080, "null");
-		String Report = new String(api.core.htmlreport(), StandardCharsets.UTF_8);
-		Files.write(Paths.get(System.getProperty("user.dir") + "//Report//report.html"), Report.getBytes());
+        String Report = new String(api.core.htmlreport(), StandardCharsets.UTF_8);
+        System.out.println(System.getProperty("user.dir"));
+        Path filePath = Paths.get(System.getProperty("user.dir") + "/scan-results/seleniumTests.html");
+        if (!Files.exists(filePath, LinkOption.NOFOLLOW_LINKS)) {
+            Files.createFile(filePath);
+        }
+        Files.write(filePath, Report.getBytes());
 		System.out.println("Stop");
 	}
 
