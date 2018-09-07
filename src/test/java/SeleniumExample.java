@@ -14,6 +14,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.zaproxy.clientapi.core.ClientApi;
 import org.zaproxy.clientapi.core.ClientApiException;
 
+import static com.sun.tools.javac.util.Assert.error;
+
 public class SeleniumExample {
 
 	@Test
@@ -33,7 +35,7 @@ public class SeleniumExample {
 		// Selenium running the script
 		driver.get("http://192.168.56.180/");
 		driver.get("http://192.168.56.180/mutillidae/index.php?page=add-to-your-blog.php");
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 		driver.quit();
 
 		// Report Generation
@@ -45,6 +47,7 @@ public class SeleniumExample {
             Files.createFile(filePath);
         }
         Files.write(filePath, Report.getBytes());
+
 		System.out.println("Stop");
 	}
 

@@ -11,6 +11,8 @@ import org.zaproxy.clientapi.core.ApiResponseElement;
 import org.zaproxy.clientapi.core.ClientApi;
 import org.zaproxy.clientapi.core.ClientApiException;
 
+import static com.sun.tools.javac.util.Assert.error;
+
 public class ActiveScan {
 
 //	public static void main(String[] args) throws InterruptedException, ClientApiException {
@@ -18,7 +20,8 @@ public class ActiveScan {
     @Test
     public void runActiveScan() throws ClientApiException, InterruptedException, IOException {
 		ClientApi api = new ClientApi("localhost", 8080,   "null");
-		api.accessUrl("http://192.168.56.180/mutillidae/index.php?page=login.php");
+		String BaseUrl = "http://192.168.56.180/mutillidae/index.php?page=login.php";
+		api.accessUrl(BaseUrl);
 
         ApiResponse resp = api.ascan.scan("http://192.168.56.180/mutillidae/index.php?page=login.php", "True", "False", null, null, null);
 
@@ -44,6 +47,11 @@ public class ActiveScan {
             Files.createFile(filePath);
         }
         Files.write(filePath, Report.getBytes());
+
+        if(!api.core.numberOfAlerts(BaseUrl,"High").equals("0")){
+            error("High alert detected, build failed");
+        }
+
         System.out.println("Active Scan complete");
 	}
 
