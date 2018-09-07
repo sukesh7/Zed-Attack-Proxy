@@ -18,14 +18,14 @@ public class ActiveScan {
 
 		ClientApi api = new ClientApi("localhost", 8080,   "null");
 //		api.core.newSession("zap testing","");
-		String BaseUrl = "http://localhost/mutillidae/index.php?page=login.php";
+		String BaseUrl = "http://dvwa.co.uk/";
 		api.accessUrl(BaseUrl);
 		api.ascan.removeScanPolicy("high ones");
 		api.ascan.addScanPolicy("high ones","HIGH","HIGH");
 		api.ascan.setEnabledPolicies("4","high ones");
 
         //run with custom scan policy
-        ApiResponse resp = api.ascan.scan(BaseUrl, "True", "False", "high ones", null, null);
+        ApiResponse resp = api.ascan.scan(BaseUrl, "False", "False", "high ones", null, null);
 
         //run default scan policy
 //        ApiResponse resp = api.ascan.scan(BaseUrl, "True", "False", "", null, null);
@@ -66,6 +66,7 @@ public class ActiveScan {
         Assert.assertEquals(actual, "0" );
 
         System.out.println("Active Scan complete");
+
 	}
 
 

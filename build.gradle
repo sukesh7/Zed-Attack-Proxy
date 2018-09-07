@@ -20,3 +20,11 @@ task runZapDaemon(type :Exec){
     commandLine 'sh','startZAPDaemon.sh'
 }
 
+//tasks.test.dependsOn(runZapDaemon)
+
+
+
+
+
+
+
