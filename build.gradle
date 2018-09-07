@@ -16,13 +16,10 @@ dependencies{
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-//task runZapDaemon(type :Exec){
-//    commandLine 'sh','startZAPDaemon.sh'
-//}
 
-//tasks.test.dependsOn(runZapDaemon)
-
-
+task stopZap(type: Exec) {
+    commandLine './stopZapDaemon.sh'
+}
 
 
 
