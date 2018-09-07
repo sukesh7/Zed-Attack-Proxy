@@ -16,7 +16,9 @@ public class ActiveScan {
     @Test
     public void runActiveScan() throws ClientApiException, InterruptedException, IOException {
 
+
 		ClientApi api = new ClientApi("localhost", 8080,   "null");
+		api.waitForSuccessfulConnectionToZap(5);
 //		api.core.newSession("zap testing","");
 		String BaseUrl = "http://dvwa.co.uk/";
 		api.accessUrl(BaseUrl);
@@ -57,15 +59,16 @@ public class ActiveScan {
 
         ApiResponse resultSummary =api.core.alertsSummary(BaseUrl);
 
-//        System.out.println(resultSummary.toString());
         System.out.println(((ApiResponseSet) resultSummary).getKeys());
 
 
         String actual = ((ApiResponseSet) resultSummary).getValue("High").toString();
         System.out.println("Actual" + actual);
+        System.out.println("Active Scan complete");
+
         Assert.assertEquals(actual, "0" );
 
-        System.out.println("Active Scan complete");
+
 
 	}
 
