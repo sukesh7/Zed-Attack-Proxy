@@ -17,7 +17,7 @@ public class Spider {
     @Test
     public void spiderTest() throws ClientApiException, InterruptedException, IOException {
         ClientApi api = new ClientApi("localhost", 8080, "null");
-        ApiResponse resp = api.spider.scan("http://dvwa.co.uk/", null, null, null, null);
+        ApiResponse resp = api.spider.scan("http://192.168.56.180/mutillidae/index.php?page=login.php", null, null, null, null);
         String scanid;
         int progress;
 
@@ -35,7 +35,6 @@ public class Spider {
         }
 
         String Report = new String(api.core.htmlreport(), StandardCharsets.UTF_8);
-        System.out.println(System.getProperty("user.dir"));
         Path filePath = Paths.get(System.getProperty("user.dir") + "/scan-results/spider.html");
         if (!Files.exists(filePath, LinkOption.NOFOLLOW_LINKS)) {
             Files.createFile(filePath);

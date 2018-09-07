@@ -31,8 +31,8 @@ public class SeleniumExample {
 		driver = new FirefoxDriver(firefoxOptions);
 
 		// Selenium running the script
-		driver.get("http://dvwa.co.uk/");
-		driver.findElement(By.xpath("//a[text()='Dewhurst Security']")).click();
+		driver.get("http://192.168.56.180/");
+		driver.get("http://192.168.56.180/mutillidae/index.php?page=add-to-your-blog.php");
 		Thread.sleep(10000);
 		driver.quit();
 

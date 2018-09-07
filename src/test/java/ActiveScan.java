@@ -18,9 +18,9 @@ public class ActiveScan {
     @Test
     public void runActiveScan() throws ClientApiException, InterruptedException, IOException {
 		ClientApi api = new ClientApi("localhost", 8080,   "null");
-		api.accessUrl("http://dvwa.co.uk/");
+		api.accessUrl("http://192.168.56.180/mutillidae/index.php?page=login.php");
 
-        ApiResponse resp = api.ascan.scan("http://dvwa.co.uk/", "True", "False", null, null, null);
+        ApiResponse resp = api.ascan.scan("http://192.168.56.180/mutillidae/index.php?page=login.php", "True", "False", null, null, null);
 
         String scanid = ((ApiResponseElement) resp).getValue();
         int progress;
