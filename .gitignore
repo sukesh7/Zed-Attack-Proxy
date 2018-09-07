@@ -1,6 +1,6 @@
 .idea/
 .DS_Store
-Report/
+scan-results/
 out/
 .gradle/
 build/
