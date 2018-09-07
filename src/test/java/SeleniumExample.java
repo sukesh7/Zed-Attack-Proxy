@@ -14,7 +14,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.zaproxy.clientapi.core.ClientApi;
 import org.zaproxy.clientapi.core.ClientApiException;
 
-import static com.sun.tools.javac.util.Assert.error;
 
 public class SeleniumExample {
 

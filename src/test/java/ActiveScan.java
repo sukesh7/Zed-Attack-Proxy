@@ -9,11 +9,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.zaproxy.clientapi.core.*;
 
-import static com.sun.tools.javac.util.Assert.error;
 
 public class ActiveScan {
 
-//	public static void main(String[] args) throws InterruptedException, ClientApiException {
 
     @Test
     public void runActiveScan() throws ClientApiException, InterruptedException, IOException {
@@ -66,9 +64,6 @@ public class ActiveScan {
         String actual = ((ApiResponseSet) resultSummary).getValue("High").toString();
         System.out.println("Actual" + actual);
         Assert.assertEquals(actual, "0" );
-
-//                error("High alert detected, build failed");
-//        }
 
         System.out.println("Active Scan complete");
 	}
