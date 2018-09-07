@@ -5,11 +5,9 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.zaproxy.clientapi.core.ApiResponse;
-import org.zaproxy.clientapi.core.ApiResponseElement;
-import org.zaproxy.clientapi.core.ClientApi;
-import org.zaproxy.clientapi.core.ClientApiException;
+import org.zaproxy.clientapi.core.*;
 
 import static com.sun.tools.javac.util.Assert.error;
 
@@ -19,11 +17,21 @@ public class ActiveScan {
 
     @Test
     public void runActiveScan() throws ClientApiException, InterruptedException, IOException {
-		ClientApi api = new ClientApi("localhost", 8080,   "null");
-		String BaseUrl = "http://192.168.56.180/mutillidae/index.php?page=login.php";
-		api.accessUrl(BaseUrl);
 
-        ApiResponse resp = api.ascan.scan("http://192.168.56.180/mutillidae/index.php?page=login.php", "True", "False", null, null, null);
+		ClientApi api = new ClientApi("localhost", 8080,   "null");
+//		api.core.newSession("zap testing","");
+		String BaseUrl = "http://localhost/mutillidae/index.php?page=login.php";
+		api.accessUrl(BaseUrl);
+		api.ascan.removeScanPolicy("high ones");
+		api.ascan.addScanPolicy("high ones","HIGH","HIGH");
+		api.ascan.setEnabledPolicies("4","high ones");
+
+        //run with custom scan policy
+        ApiResponse resp = api.ascan.scan(BaseUrl, "True", "False", "high ones", null, null);
+
+        //run default scan policy
+//        ApiResponse resp = api.ascan.scan(BaseUrl, "True", "False", "", null, null);
+
 
         String scanid = ((ApiResponseElement) resp).getValue();
         int progress;
@@ -48,11 +56,23 @@ public class ActiveScan {
         }
         Files.write(filePath, Report.getBytes());
 
-        if(!api.core.numberOfAlerts(BaseUrl,"High").equals("0")){
-            error("High alert detected, build failed");
-        }
+
+        ApiResponse resultSummary =api.core.alertsSummary(BaseUrl);
+
+//        System.out.println(resultSummary.toString());
+        System.out.println(((ApiResponseSet) resultSummary).getKeys());
+
+
+        String actual = ((ApiResponseSet) resultSummary).getValue("High").toString();
+        System.out.println("Actual" + actual);
+        Assert.assertEquals(actual, "0" );
+
+//                error("High alert detected, build failed");
+//        }
 
         System.out.println("Active Scan complete");
 	}
+
+
 
 }

@@ -33,8 +33,8 @@ public class SeleniumExample {
 		driver = new FirefoxDriver(firefoxOptions);
 
 		// Selenium running the script
-		driver.get("http://192.168.56.180/");
-		driver.get("http://192.168.56.180/mutillidae/index.php?page=add-to-your-blog.php");
+		driver.get("http://localhost/mutillidae/");
+		driver.get("http://localhost/mutillidae/index.php?page=add-to-your-blog.php");
 		Thread.sleep(1000);
 		driver.quit();
 

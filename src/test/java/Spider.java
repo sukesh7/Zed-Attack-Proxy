@@ -17,7 +17,7 @@ public class Spider {
     @Test
     public void spiderTest() throws ClientApiException, InterruptedException, IOException {
         ClientApi api = new ClientApi("localhost", 8080, "null");
-        ApiResponse resp = api.spider.scan("http://192.168.56.180/mutillidae/index.php?page=login.php", null, null, null, null);
+        ApiResponse resp = api.spider.scan("http://localhost/mutillidae/index.php?page=login.php", null, null, null, null);
         String scanid;
         int progress;
 
