@@ -4,7 +4,7 @@
   - Java
   - Gradle
   - Dowload ZAP proxy for your OS
-  - Firefox browser
+  - Firefox browser and driver
   - Mutillidae app running in virtual box to run tests against
  
  ## Steps
