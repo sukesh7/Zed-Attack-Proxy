@@ -14,7 +14,7 @@ import org.zaproxy.clientapi.core.ClientApiException;
 
 public class Spider {
 
-   // @Test
+    @Test
     public void spiderTest() throws ClientApiException, InterruptedException, IOException {
         ClientApi api = new ClientApi("localhost", 8080, "null");
         ApiResponse resp = api.spider.scan("http://localhost/mutillidae/index.php?page=login.php", null, null, null, null);
