@@ -17,7 +17,7 @@ import org.zaproxy.clientapi.core.ClientApiException;
 
 public class SeleniumExample {
 
-	//@Test
+	@Test
 	public void seleniumTests() throws InterruptedException, ClientApiException, IOException {
 		System.setProperty("webdriver.gecko.driver", "./geckodriver");
 
